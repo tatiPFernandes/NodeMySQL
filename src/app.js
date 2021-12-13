@@ -1,14 +1,6 @@
-const{
-    addMovie,
-    listMovies,
-    updateMovie,
-    deleteMovie,
-    deleteAllTable
-} = require("./movie/movie.methods");
-//const { update } = require("./movie/movie.model");
+const{addMovie, listMovies, updateMovie, deleteMovie} = require("./movie/movie.methods");
+const { addActor, updateActor, deleteActor } = require("./actor/actor.methods");
 const yargs = require("yargs");
-const { addActor, updateActor } = require("./actor/actor.methods");
-
 const command = process.argv[2];
 
 const app = async (args) =>{
@@ -25,7 +17,7 @@ const app = async (args) =>{
             break
         case "updateMovie":
             updateMovie({
-                
+                id: args.id,
                 title: args.title,
                 rating: args.rating
             });
@@ -49,7 +41,12 @@ const app = async (args) =>{
               actor: args.actor
             });
             break;
-
+        case "deleteActor":
+            deleteActor({
+                actor: args.actor,
+                
+                });
+            break;
 
 
     }

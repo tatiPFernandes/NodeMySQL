@@ -1,9 +1,10 @@
-//const { where } = require("sequelize/dist");
+
+const { arg } = require("mathjs");
 const Movie = require("./movie.model");
 const { update } = require("./movie.model");
 
 
-//Movie.hasMany(actor)
+
 exports.addMovie = async(movieObj) =>{
     try{
         await Movie.sync();
@@ -16,11 +17,7 @@ exports.addMovie = async(movieObj) =>{
 
 exports.listMovies = async ()=>{
     try{
-        console.log(await Movie.findAll({
-            where:{
-                title: "Spiderman"
-            }
-        }))
+        console.log(await Movie.findAll({}))
     }catch(err){
         console.log(err)
     }
@@ -29,9 +26,8 @@ exports.listMovies = async ()=>{
 exports.updateMovie = async(movieObj)=>{
     try{
         await Movie.update(
-            {actor: movieObj.actor},
-            {where:{ title: movieObj.title}}
-        );
+            {title: movieObj.title}, {where:{id: movieObj.id
+    }});
         console.log("updated")
     }catch(err){
         console.log(err);

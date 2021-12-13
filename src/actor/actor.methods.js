@@ -6,6 +6,7 @@ exports.addActor = async(actorObj) =>{
         await Actor.sync();
         await Actor.create(actorObj)
         return`Successfully cerated ${actorObj.title}`
+        
     }catch(err){
         console.log(err)
     }
@@ -21,12 +22,25 @@ exports.listActor = async ()=>{
 
 exports.updateActor = async(actorObj)=>{
     try{
-        await Movie.update(
+        await Actor.update(
             {actor: actorObj.actor},
             {where:{ title: actorObj.title}}
         );
         console.log("updated")
     }catch(err){
         console.log(err);
+    }
+}
+
+exports.deleteActor = async(actorObj) =>{
+    try{
+        await Actor.destroy({
+            where:{
+                actor: actorObj.actor,
+              
+            }
+        })
+    }catch(err){
+        console.log(err)
     }
 }
